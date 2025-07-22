@@ -53,4 +53,27 @@ Try {
     Write-Host "Scheduled task $TaskName not found."
 }
 
+# Remove VSA Manager desktop icon from Public Desktop (all users)
+$publicDesktop = [Environment]::GetFolderPath("CommonDesktopDirectory")
+$iconName = "VSA Manager.lnk"
+$publicIconPath = Join-Path $publicDesktop $iconName
+
+if (Test-Path $publicIconPath) {
+    Remove-Item $publicIconPath -Force
+    Write-Host "Removed VSA Manager desktop icon from all users (Public Desktop)."
+} else {
+    Write-Host "VSA Manager desktop icon not found on Public Desktop."
+}
+
+# Remove VSA Manager desktop icon from current user's desktop
+$userDesktop = [Environment]::GetFolderPath("Desktop")
+$userIconPath = Join-Path $userDesktop $iconName
+
+if (Test-Path $userIconPath) {
+    Remove-Item $userIconPath -Force
+    Write-Host "Removed VSA Manager desktop icon from current user's desktop."
+} else {
+    Write-Host "VSA Manager desktop icon not found on current user's desktop."
+}
+
 Write-Host "Uninstallation completed successfully."
