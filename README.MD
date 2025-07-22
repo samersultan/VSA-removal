@@ -14,4 +14,4 @@ It will:
 Run the script as an administrator:
 
 ```powershell
-.\uninstall-vsa-x.ps1
+.\vsa-removal-2.ps1
